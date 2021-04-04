@@ -57,7 +57,15 @@ def transition_model(corpus, page, damping_factor):
     linked to by `page`. With probability `1 - damping_factor`, choose
     a link at random chosen from all pages in the corpus.
     """
-    raise NotImplementedError
+    totalPage  = len(corpus)
+    linkedPage = len(corpus[page])
+    D = {}
+    for ele in list(corpus.keys()):
+        prob = (1- damping_factor) / totalPage
+        if ele in corpus[page]:
+            prob += damping_factor/linkedPage
+        D[ele] = prob
+    return D
 
 
 def sample_pagerank(corpus, damping_factor, n):
@@ -69,7 +77,29 @@ def sample_pagerank(corpus, damping_factor, n):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
-    raise NotImplementedError
+    totalPage = len(corpus)
+    D = dict([(pageName , 1/totalPage) for pageName in corpus.keys()])
+    counter = 0
+    samplingList = []
+    freqDistribution = {}
+    while True:
+        if counter == n:
+            break
+        page = random.choices(list(D.keys()), weights=list(D.values()), k=1)
+        samplingList.append(page[0])
+        D = transition_model(corpus, page[0], damping_factor)
+        counter +=1
+    for name in list(corpus.keys()):
+        freqDistribution[name] = samplingList.count(name) / n
+    return freqDistribution
+
+
+def LinkToName(corpus, name):
+    includedList = []
+    for dummy, links in corpus.items():
+        if name in links:
+            includedList.append(dummy)
+    return includedList
 
 
 def iterate_pagerank(corpus, damping_factor):
@@ -81,7 +111,21 @@ def iterate_pagerank(corpus, damping_factor):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
-    raise NotImplementedError
+    totalPage = len(corpus)
+    D = dict([(pageName , 1/totalPage) for pageName in corpus.keys()])
+    nameList = D.keys()
+    while True:
+        probList = list(D.values()).copy()
+        for name in nameList:
+            LinkToNameList = LinkToName(corpus, name)
+            D[name] = (1-damping_factor)/totalPage
+            for connection in LinkToNameList:
+                D[name] += damping_factor*(D[connection]/len(corpus[connection]))
+        nextList = D.values()
+        minorList = [abs(i-j) for i,j in zip(probList, nextList)]
+        if max(minorList) <= 0.001:
+            break
+    return D
 
 
 if __name__ == "__main__":
