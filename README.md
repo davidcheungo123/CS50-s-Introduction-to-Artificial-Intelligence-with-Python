@@ -24,7 +24,9 @@ We can frame this as a search problem: our states are people. Our actions are mo
 ### Project 1b Tic-Tac-Toe:
 Using *Minimax*, implement an AI to play Tic-Tac-Toe optimally.
 <p align="center"><img  src="./Project0/Tic-Tac-Toe/tictactoe/game.png" alt="tictactoe" width="500"/></p>
+
 #### Usage:
+
 ```
 $ python runner.py
 ```
