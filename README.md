@@ -23,7 +23,7 @@ We can frame this as a search problem: our states are people. Our actions are mo
 
 ### Project 1b Tic-Tac-Toe:
 Using *Minimax*, implement an AI to play Tic-Tac-Toe optimally.
-<p align="center"><img  src="./Project0/Tic-Tac-Toe/tictactoe/game.png" alt="tictactoe" width="800"/></p>
+<p align="center"><img  src="./Project0/Tic-Tac-Toe/tictactoe/game.png" alt="tictactoe" width="400"/></p>
 #### Usage:
 ```
 $ python runner.py
@@ -51,13 +51,13 @@ $ python puzzle.py
 
 ### Project 2b Minesweeper:
 Write an AI to play Minesweeper.
-<p align="center"><img  src="./Project1/Minesweeper/minesweeper/game.png" alt="minesweeper" width="800"/></p>
+<p align="center"><img  src="./Project1/Minesweeper/minesweeper/game.png" alt="minesweeper" width="400"/></p>
 #### Background:
 Minesweeper is a puzzle game that consists of a grid of cells, where some of the cells contain hidden “mines.” Clicking on a cell that contains a mine detonates the mine, and causes the user to lose the game. Clicking on a “safe” cell (i.e., a cell that does not contain a mine) reveals a number that indicates how many neighboring cells – where a neighbor is a cell that is one square to the left, right, up, down, or diagonal from the given cell – contain a mine.
 
 In this 3x3 Minesweeper game, for example, the three 1 values indicate that each of those cells has one neighboring cell that is a mine. The four 0 values indicate that each of those cells has no neighboring mine.
 
-<p align="center"><img  src="./Project1/Minesweeper/minesweeper/safe_cells.png" alt="cells" width="800"/></p>
+<p align="center"><img  src="./Project1/Minesweeper/minesweeper/safe_cells.png" alt="cells" width="400"/></p>
 
 Given this information, a logical player could conclude that there must be a mine in the lower-right cell and that there is no mine in the upper-left cell, for only in that case would the numerical labels on each of the other cells be accurate.
 
